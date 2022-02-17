@@ -1,0 +1,37 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30517.126
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Co2Operation.GraphQL", "Co2Operation.GraphQL\Co2Operation.GraphQL.csproj", "{5CEE2BCC-2ECF-4310-B47C-ACBE115C29C4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Co2Operation.GraphQL.DataAccess", "Co2Operation.GraphQL.DataAccess\Co2Operation.GraphQL.DataAccess.csproj", "{22BF2F5E-8B8D-431C-9E6E-9E5DA4E83B53}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Co2Operation.GraphQL.Schema", "Co2Operation.GraphQL.Schema\Co2Operation.GraphQL.Schema.csproj", "{B40F360B-0357-45BF-B6DE-90717AB63086}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{5CEE2BCC-2ECF-4310-B47C-ACBE115C29C4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5CEE2BCC-2ECF-4310-B47C-ACBE115C29C4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5CEE2BCC-2ECF-4310-B47C-ACBE115C29C4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5CEE2BCC-2ECF-4310-B47C-ACBE115C29C4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{22BF2F5E-8B8D-431C-9E6E-9E5DA4E83B53}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{22BF2F5E-8B8D-431C-9E6E-9E5DA4E83B53}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{22BF2F5E-8B8D-431C-9E6E-9E5DA4E83B53}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{22BF2F5E-8B8D-431C-9E6E-9E5DA4E83B53}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B40F360B-0357-45BF-B6DE-90717AB63086}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B40F360B-0357-45BF-B6DE-90717AB63086}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B40F360B-0357-45BF-B6DE-90717AB63086}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B40F360B-0357-45BF-B6DE-90717AB63086}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {F7AE365C-8F4C-426E-B3BA-6A9061D7210A}
+	EndGlobalSection
+EndGlobal

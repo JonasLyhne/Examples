@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="112323cc5b4a4ada95783f74391fbbf2" Name="Diagram1">
+        <EntityTypeShape EntityType="BurgerDBModel.Burger" Width="1.5" PointX="3" PointY="7.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="BurgerDBModel.BurgerContent" Width="1.5" PointX="5.25" PointY="9.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="BurgerDBModel.BurgerIngredient" Width="1.5" PointX="0.75" PointY="10.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="BurgerDBModel.BurgerIngredientType" Width="1.5" PointX="1.5" PointY="14.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="BurgerDBModel.Customer" Width="1.5" PointX="0.75" PointY="7.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="BurgerDBModel.Inventory" Width="1.5" PointX="3" PointY="3.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="BurgerDBModel.Order" Width="1.5" PointX="3" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="BurgerDBModel.OrderContent" Width="1.5" PointX="5.25" PointY="0.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="BurgerDBModel.Restaurant" Width="1.5" PointX="0.75" PointY="3.875" IsExpanded="true" />
+        <AssociationConnector Association="BurgerDBModel.fk_burgercontent_burger_id" ManuallyRouted="false" />
+        <AssociationConnector Association="BurgerDBModel.fk_ordercontent_burger_id" ManuallyRouted="false" />
+        <AssociationConnector Association="BurgerDBModel.fk_burgercontent_burgerIngredient_id" ManuallyRouted="false" />
+        <AssociationConnector Association="BurgerDBModel.fk_burgeringredient_burgeringredient_type" ManuallyRouted="false" />
+        <AssociationConnector Association="BurgerDBModel.fk_inventory_burger_ingredient_id" ManuallyRouted="false" />
+        <AssociationConnector Association="BurgerDBModel.fk_order_customer_id" ManuallyRouted="false" />
+        <AssociationConnector Association="BurgerDBModel.fk_inventory_restaurant_id" ManuallyRouted="false" />
+        <AssociationConnector Association="BurgerDBModel.fk_order_restaurant_id" ManuallyRouted="false" />
+        <AssociationConnector Association="BurgerDBModel.fk_ordercontent_order_id" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

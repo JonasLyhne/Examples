@@ -1,0 +1,606 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="BurgerDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Burger">
+          <Key>
+            <PropertyRef Name="guid" />
+          </Key>
+          <Property Name="guid" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="name" Type="varchar" MaxLength="64" Nullable="false" />
+        </EntityType>
+        <EntityType Name="BurgerContent">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="burger_id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="burgerIngredient_id" Type="int" />
+        </EntityType>
+        <EntityType Name="BurgerIngredient">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="varchar" MaxLength="64" />
+          <Property Name="description" Type="varchar" MaxLength="255" />
+          <Property Name="price" Type="money" Nullable="false" />
+          <Property Name="type_id" Type="int" />
+        </EntityType>
+        <EntityType Name="BurgerIngredientType">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="varchar" MaxLength="32" />
+        </EntityType>
+        <EntityType Name="Customer">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="tableNumber" Type="varchar" MaxLength="255" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Inventory">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="restaurant_id" Type="int" Nullable="false" />
+          <Property Name="burger_ingredient_id" Type="int" Nullable="false" />
+          <Property Name="quantity" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Order">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="restaurant_id" Type="int" Nullable="false" />
+          <Property Name="customer_id" Type="int" Nullable="false" />
+          <Property Name="completed" Type="bit" />
+        </EntityType>
+        <EntityType Name="OrderContent">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="order_id" Type="int" Nullable="false" />
+          <Property Name="burger_id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="quantity" Type="int" />
+        </EntityType>
+        <EntityType Name="Restaurant">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="city" Type="varchar" MaxLength="32" Nullable="false" />
+          <Property Name="address" Type="varchar" MaxLength="32" Nullable="false" />
+          <Property Name="phone" Type="varchar" MaxLength="16" Nullable="false" />
+        </EntityType>
+        <Association Name="fk_burgercontent_burger_id">
+          <End Role="Burger" Type="Self.Burger" Multiplicity="1" />
+          <End Role="BurgerContent" Type="Self.BurgerContent" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Burger">
+              <PropertyRef Name="guid" />
+            </Principal>
+            <Dependent Role="BurgerContent">
+              <PropertyRef Name="burger_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_burgercontent_burgerIngredient_id">
+          <End Role="BurgerIngredient" Type="Self.BurgerIngredient" Multiplicity="0..1" />
+          <End Role="BurgerContent" Type="Self.BurgerContent" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="BurgerIngredient">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="BurgerContent">
+              <PropertyRef Name="burgerIngredient_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_burgeringredient_burgeringredient_type">
+          <End Role="BurgerIngredientType" Type="Self.BurgerIngredientType" Multiplicity="0..1" />
+          <End Role="BurgerIngredient" Type="Self.BurgerIngredient" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="BurgerIngredientType">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="BurgerIngredient">
+              <PropertyRef Name="type_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_inventory_burger_ingredient_id">
+          <End Role="BurgerIngredient" Type="Self.BurgerIngredient" Multiplicity="1" />
+          <End Role="Inventory" Type="Self.Inventory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="BurgerIngredient">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Inventory">
+              <PropertyRef Name="burger_ingredient_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_inventory_restaurant_id">
+          <End Role="Restaurant" Type="Self.Restaurant" Multiplicity="1" />
+          <End Role="Inventory" Type="Self.Inventory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Restaurant">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Inventory">
+              <PropertyRef Name="restaurant_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_order_customer_id">
+          <End Role="Customer" Type="Self.Customer" Multiplicity="1" />
+          <End Role="Order" Type="Self.Order" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Customer">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Order">
+              <PropertyRef Name="customer_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_order_restaurant_id">
+          <End Role="Restaurant" Type="Self.Restaurant" Multiplicity="1" />
+          <End Role="Order" Type="Self.Order" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Restaurant">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Order">
+              <PropertyRef Name="restaurant_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_ordercontent_burger_id">
+          <End Role="Burger" Type="Self.Burger" Multiplicity="1" />
+          <End Role="OrderContent" Type="Self.OrderContent" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Burger">
+              <PropertyRef Name="guid" />
+            </Principal>
+            <Dependent Role="OrderContent">
+              <PropertyRef Name="burger_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_ordercontent_order_id">
+          <End Role="Order" Type="Self.Order" Multiplicity="1" />
+          <End Role="OrderContent" Type="Self.OrderContent" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Order">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="OrderContent">
+              <PropertyRef Name="order_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="BurgerDBModelStoreContainer">
+          <EntitySet Name="Burger" EntityType="Self.Burger" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="BurgerContent" EntityType="Self.BurgerContent" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="BurgerIngredient" EntityType="Self.BurgerIngredient" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="BurgerIngredientType" EntityType="Self.BurgerIngredientType" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Customer" EntityType="Self.Customer" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Inventory" EntityType="Self.Inventory" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Order" EntityType="Self.Order" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="OrderContent" EntityType="Self.OrderContent" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Restaurant" EntityType="Self.Restaurant" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="fk_burgercontent_burger_id" Association="Self.fk_burgercontent_burger_id">
+            <End Role="Burger" EntitySet="Burger" />
+            <End Role="BurgerContent" EntitySet="BurgerContent" />
+          </AssociationSet>
+          <AssociationSet Name="fk_burgercontent_burgerIngredient_id" Association="Self.fk_burgercontent_burgerIngredient_id">
+            <End Role="BurgerIngredient" EntitySet="BurgerIngredient" />
+            <End Role="BurgerContent" EntitySet="BurgerContent" />
+          </AssociationSet>
+          <AssociationSet Name="fk_burgeringredient_burgeringredient_type" Association="Self.fk_burgeringredient_burgeringredient_type">
+            <End Role="BurgerIngredientType" EntitySet="BurgerIngredientType" />
+            <End Role="BurgerIngredient" EntitySet="BurgerIngredient" />
+          </AssociationSet>
+          <AssociationSet Name="fk_inventory_burger_ingredient_id" Association="Self.fk_inventory_burger_ingredient_id">
+            <End Role="BurgerIngredient" EntitySet="BurgerIngredient" />
+            <End Role="Inventory" EntitySet="Inventory" />
+          </AssociationSet>
+          <AssociationSet Name="fk_inventory_restaurant_id" Association="Self.fk_inventory_restaurant_id">
+            <End Role="Restaurant" EntitySet="Restaurant" />
+            <End Role="Inventory" EntitySet="Inventory" />
+          </AssociationSet>
+          <AssociationSet Name="fk_order_customer_id" Association="Self.fk_order_customer_id">
+            <End Role="Customer" EntitySet="Customer" />
+            <End Role="Order" EntitySet="Order" />
+          </AssociationSet>
+          <AssociationSet Name="fk_order_restaurant_id" Association="Self.fk_order_restaurant_id">
+            <End Role="Restaurant" EntitySet="Restaurant" />
+            <End Role="Order" EntitySet="Order" />
+          </AssociationSet>
+          <AssociationSet Name="fk_ordercontent_burger_id" Association="Self.fk_ordercontent_burger_id">
+            <End Role="Burger" EntitySet="Burger" />
+            <End Role="OrderContent" EntitySet="OrderContent" />
+          </AssociationSet>
+          <AssociationSet Name="fk_ordercontent_order_id" Association="Self.fk_ordercontent_order_id">
+            <End Role="Order" EntitySet="Order" />
+            <End Role="OrderContent" EntitySet="OrderContent" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="BurgerDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Burger">
+          <Key>
+            <PropertyRef Name="guid" />
+          </Key>
+          <Property Name="guid" Type="Guid" Nullable="false" />
+          <Property Name="name" Type="String" MaxLength="64" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="BurgerContent" Relationship="Self.fk_burgercontent_burger_id" FromRole="Burger" ToRole="BurgerContent" />
+          <NavigationProperty Name="OrderContent" Relationship="Self.fk_ordercontent_burger_id" FromRole="Burger" ToRole="OrderContent" />
+        </EntityType>
+        <EntityType Name="BurgerContent">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="burger_id" Type="Guid" Nullable="false" />
+          <Property Name="burgerIngredient_id" Type="Int32" />
+          <NavigationProperty Name="Burger" Relationship="Self.fk_burgercontent_burger_id" FromRole="BurgerContent" ToRole="Burger" />
+          <NavigationProperty Name="BurgerIngredient" Relationship="Self.fk_burgercontent_burgerIngredient_id" FromRole="BurgerContent" ToRole="BurgerIngredient" />
+        </EntityType>
+        <EntityType Name="BurgerIngredient">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" MaxLength="64" FixedLength="false" Unicode="false" />
+          <Property Name="description" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="price" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+          <Property Name="type_id" Type="Int32" />
+          <NavigationProperty Name="BurgerContent" Relationship="Self.fk_burgercontent_burgerIngredient_id" FromRole="BurgerIngredient" ToRole="BurgerContent" />
+          <NavigationProperty Name="BurgerIngredientType" Relationship="Self.fk_burgeringredient_burgeringredient_type" FromRole="BurgerIngredient" ToRole="BurgerIngredientType" />
+          <NavigationProperty Name="Inventory" Relationship="Self.fk_inventory_burger_ingredient_id" FromRole="BurgerIngredient" ToRole="Inventory" />
+        </EntityType>
+        <EntityType Name="BurgerIngredientType">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" MaxLength="32" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="BurgerIngredient" Relationship="Self.fk_burgeringredient_burgeringredient_type" FromRole="BurgerIngredientType" ToRole="BurgerIngredient" />
+        </EntityType>
+        <EntityType Name="Customer">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="tableNumber" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Order" Relationship="Self.fk_order_customer_id" FromRole="Customer" ToRole="Order" />
+        </EntityType>
+        <EntityType Name="Inventory">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="restaurant_id" Type="Int32" Nullable="false" />
+          <Property Name="burger_ingredient_id" Type="Int32" Nullable="false" />
+          <Property Name="quantity" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="BurgerIngredient" Relationship="Self.fk_inventory_burger_ingredient_id" FromRole="Inventory" ToRole="BurgerIngredient" />
+          <NavigationProperty Name="Restaurant" Relationship="Self.fk_inventory_restaurant_id" FromRole="Inventory" ToRole="Restaurant" />
+        </EntityType>
+        <EntityType Name="Order">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="restaurant_id" Type="Int32" Nullable="false" />
+          <Property Name="customer_id" Type="Int32" Nullable="false" />
+          <Property Name="completed" Type="Boolean" />
+          <NavigationProperty Name="Customer" Relationship="Self.fk_order_customer_id" FromRole="Order" ToRole="Customer" />
+          <NavigationProperty Name="Restaurant" Relationship="Self.fk_order_restaurant_id" FromRole="Order" ToRole="Restaurant" />
+          <NavigationProperty Name="OrderContent" Relationship="Self.fk_ordercontent_order_id" FromRole="Order" ToRole="OrderContent" />
+        </EntityType>
+        <EntityType Name="OrderContent">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="order_id" Type="Int32" Nullable="false" />
+          <Property Name="burger_id" Type="Guid" Nullable="false" />
+          <Property Name="quantity" Type="Int32" />
+          <NavigationProperty Name="Burger" Relationship="Self.fk_ordercontent_burger_id" FromRole="OrderContent" ToRole="Burger" />
+          <NavigationProperty Name="Order" Relationship="Self.fk_ordercontent_order_id" FromRole="OrderContent" ToRole="Order" />
+        </EntityType>
+        <EntityType Name="Restaurant">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="city" Type="String" MaxLength="32" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="address" Type="String" MaxLength="32" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="phone" Type="String" MaxLength="16" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Inventory" Relationship="Self.fk_inventory_restaurant_id" FromRole="Restaurant" ToRole="Inventory" />
+          <NavigationProperty Name="Order" Relationship="Self.fk_order_restaurant_id" FromRole="Restaurant" ToRole="Order" />
+        </EntityType>
+        <Association Name="fk_burgercontent_burger_id">
+          <End Role="Burger" Type="Self.Burger" Multiplicity="1" />
+          <End Role="BurgerContent" Type="Self.BurgerContent" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Burger">
+              <PropertyRef Name="guid" />
+            </Principal>
+            <Dependent Role="BurgerContent">
+              <PropertyRef Name="burger_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_ordercontent_burger_id">
+          <End Role="Burger" Type="Self.Burger" Multiplicity="1" />
+          <End Role="OrderContent" Type="Self.OrderContent" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Burger">
+              <PropertyRef Name="guid" />
+            </Principal>
+            <Dependent Role="OrderContent">
+              <PropertyRef Name="burger_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_burgercontent_burgerIngredient_id">
+          <End Role="BurgerIngredient" Type="Self.BurgerIngredient" Multiplicity="0..1" />
+          <End Role="BurgerContent" Type="Self.BurgerContent" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="BurgerIngredient">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="BurgerContent">
+              <PropertyRef Name="burgerIngredient_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_burgeringredient_burgeringredient_type">
+          <End Role="BurgerIngredientType" Type="Self.BurgerIngredientType" Multiplicity="0..1" />
+          <End Role="BurgerIngredient" Type="Self.BurgerIngredient" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="BurgerIngredientType">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="BurgerIngredient">
+              <PropertyRef Name="type_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_inventory_burger_ingredient_id">
+          <End Role="BurgerIngredient" Type="Self.BurgerIngredient" Multiplicity="1" />
+          <End Role="Inventory" Type="Self.Inventory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="BurgerIngredient">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Inventory">
+              <PropertyRef Name="burger_ingredient_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_order_customer_id">
+          <End Role="Customer" Type="Self.Customer" Multiplicity="1" />
+          <End Role="Order" Type="Self.Order" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Customer">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Order">
+              <PropertyRef Name="customer_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_inventory_restaurant_id">
+          <End Role="Restaurant" Type="Self.Restaurant" Multiplicity="1" />
+          <End Role="Inventory" Type="Self.Inventory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Restaurant">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Inventory">
+              <PropertyRef Name="restaurant_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_order_restaurant_id">
+          <End Role="Restaurant" Type="Self.Restaurant" Multiplicity="1" />
+          <End Role="Order" Type="Self.Order" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Restaurant">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Order">
+              <PropertyRef Name="restaurant_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_ordercontent_order_id">
+          <End Role="Order" Type="Self.Order" Multiplicity="1" />
+          <End Role="OrderContent" Type="Self.OrderContent" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Order">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="OrderContent">
+              <PropertyRef Name="order_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="BurgerDBEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Burger" EntityType="Self.Burger" />
+          <EntitySet Name="BurgerContent" EntityType="Self.BurgerContent" />
+          <EntitySet Name="BurgerIngredient" EntityType="Self.BurgerIngredient" />
+          <EntitySet Name="BurgerIngredientType" EntityType="Self.BurgerIngredientType" />
+          <EntitySet Name="Customer" EntityType="Self.Customer" />
+          <EntitySet Name="Inventory" EntityType="Self.Inventory" />
+          <EntitySet Name="Order" EntityType="Self.Order" />
+          <EntitySet Name="OrderContent" EntityType="Self.OrderContent" />
+          <EntitySet Name="Restaurant" EntityType="Self.Restaurant" />
+          <AssociationSet Name="fk_burgercontent_burger_id" Association="Self.fk_burgercontent_burger_id">
+            <End Role="Burger" EntitySet="Burger" />
+            <End Role="BurgerContent" EntitySet="BurgerContent" />
+          </AssociationSet>
+          <AssociationSet Name="fk_ordercontent_burger_id" Association="Self.fk_ordercontent_burger_id">
+            <End Role="Burger" EntitySet="Burger" />
+            <End Role="OrderContent" EntitySet="OrderContent" />
+          </AssociationSet>
+          <AssociationSet Name="fk_burgercontent_burgerIngredient_id" Association="Self.fk_burgercontent_burgerIngredient_id">
+            <End Role="BurgerIngredient" EntitySet="BurgerIngredient" />
+            <End Role="BurgerContent" EntitySet="BurgerContent" />
+          </AssociationSet>
+          <AssociationSet Name="fk_burgeringredient_burgeringredient_type" Association="Self.fk_burgeringredient_burgeringredient_type">
+            <End Role="BurgerIngredientType" EntitySet="BurgerIngredientType" />
+            <End Role="BurgerIngredient" EntitySet="BurgerIngredient" />
+          </AssociationSet>
+          <AssociationSet Name="fk_inventory_burger_ingredient_id" Association="Self.fk_inventory_burger_ingredient_id">
+            <End Role="BurgerIngredient" EntitySet="BurgerIngredient" />
+            <End Role="Inventory" EntitySet="Inventory" />
+          </AssociationSet>
+          <AssociationSet Name="fk_order_customer_id" Association="Self.fk_order_customer_id">
+            <End Role="Customer" EntitySet="Customer" />
+            <End Role="Order" EntitySet="Order" />
+          </AssociationSet>
+          <AssociationSet Name="fk_inventory_restaurant_id" Association="Self.fk_inventory_restaurant_id">
+            <End Role="Restaurant" EntitySet="Restaurant" />
+            <End Role="Inventory" EntitySet="Inventory" />
+          </AssociationSet>
+          <AssociationSet Name="fk_order_restaurant_id" Association="Self.fk_order_restaurant_id">
+            <End Role="Restaurant" EntitySet="Restaurant" />
+            <End Role="Order" EntitySet="Order" />
+          </AssociationSet>
+          <AssociationSet Name="fk_ordercontent_order_id" Association="Self.fk_ordercontent_order_id">
+            <End Role="Order" EntitySet="Order" />
+            <End Role="OrderContent" EntitySet="OrderContent" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="BurgerDBModelStoreContainer" CdmEntityContainer="BurgerDBEntities">
+          <EntitySetMapping Name="Burger">
+            <EntityTypeMapping TypeName="BurgerDBModel.Burger">
+              <MappingFragment StoreEntitySet="Burger">
+                <ScalarProperty Name="guid" ColumnName="guid" />
+                <ScalarProperty Name="name" ColumnName="name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="BurgerContent">
+            <EntityTypeMapping TypeName="BurgerDBModel.BurgerContent">
+              <MappingFragment StoreEntitySet="BurgerContent">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="burger_id" ColumnName="burger_id" />
+                <ScalarProperty Name="burgerIngredient_id" ColumnName="burgerIngredient_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="BurgerIngredient">
+            <EntityTypeMapping TypeName="BurgerDBModel.BurgerIngredient">
+              <MappingFragment StoreEntitySet="BurgerIngredient">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="description" ColumnName="description" />
+                <ScalarProperty Name="price" ColumnName="price" />
+                <ScalarProperty Name="type_id" ColumnName="type_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="BurgerIngredientType">
+            <EntityTypeMapping TypeName="BurgerDBModel.BurgerIngredientType">
+              <MappingFragment StoreEntitySet="BurgerIngredientType">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Customer">
+            <EntityTypeMapping TypeName="BurgerDBModel.Customer">
+              <MappingFragment StoreEntitySet="Customer">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="tableNumber" ColumnName="tableNumber" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Inventory">
+            <EntityTypeMapping TypeName="BurgerDBModel.Inventory">
+              <MappingFragment StoreEntitySet="Inventory">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="restaurant_id" ColumnName="restaurant_id" />
+                <ScalarProperty Name="burger_ingredient_id" ColumnName="burger_ingredient_id" />
+                <ScalarProperty Name="quantity" ColumnName="quantity" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Order">
+            <EntityTypeMapping TypeName="BurgerDBModel.Order">
+              <MappingFragment StoreEntitySet="Order">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="restaurant_id" ColumnName="restaurant_id" />
+                <ScalarProperty Name="customer_id" ColumnName="customer_id" />
+                <ScalarProperty Name="completed" ColumnName="completed" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="OrderContent">
+            <EntityTypeMapping TypeName="BurgerDBModel.OrderContent">
+              <MappingFragment StoreEntitySet="OrderContent">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="order_id" ColumnName="order_id" />
+                <ScalarProperty Name="burger_id" ColumnName="burger_id" />
+                <ScalarProperty Name="quantity" ColumnName="quantity" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Restaurant">
+            <EntityTypeMapping TypeName="BurgerDBModel.Restaurant">
+              <MappingFragment StoreEntitySet="Restaurant">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="city" ColumnName="city" />
+                <ScalarProperty Name="address" ColumnName="address" />
+                <ScalarProperty Name="phone" ColumnName="phone" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

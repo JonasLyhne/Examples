@@ -1,0 +1,172 @@
+body{
+    width: 100%;
+}
+
+#container{
+
+    background-color: white;
+    width: 50%;
+
+    position: absolute;
+    /*/left: 25%;*/
+    /*right: 50%;*/
+
+    text-align: center;
+    
+
+}
+
+.quantitycontainer {
+    display: inline-block;
+}
+
+.quantity-btn {
+    border: none;
+}
+
+.quantityseperator {
+    display: inline-block;
+    background-color: whitesmoke;
+    height: 44px;
+   
+}
+
+.cheesecontainer {
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+}
+
+.cheeseitem {
+ 
+    padding: 0 !important;
+}
+
+.cheeseitem p {
+    margin-bottom: 0;
+}
+
+.align-left {
+    text-align: left;
+}
+
+#menu-content img{
+    max-width: 25%;
+    margin-left: auto;
+    margin-right: auto;
+    
+}
+
+#carouselExampleIndicators{
+    color: whitesmoke !important;
+}
+
+.nodisplay{
+    display: none;
+}
+
+.carousel-item img{
+    margin-top: 25px;
+}
+
+.menu-pane a{
+    color: whitesmoke;
+}
+
+.active-pane a{
+    color: greenyellow;
+}
+
+.fl-left{
+    float: left;
+}
+
+.fl-right{
+    float: right;
+}
+
+.menu-nav-btn{
+    border: solid 1px yellowgreen;
+    min-width: 100px;
+    /*border-radius: 15%;*/
+    background-color: yellow;
+
+
+}
+
+#menu-nav-container{
+    margin-left: 10px;
+    margin-right: 10px;
+    border-bottom: 1px solid whitesmoke;
+}
+
+#menu-nav-container h1{
+    display: inline-block;
+}
+
+.menu-pane{
+
+    display: inline-block;
+    
+    width: 19.2%;
+    color: whitesmoke;
+    font-size: 1.4em;
+    font-family: 'Ranga', cursive;
+
+}
+
+#menu-content{
+    background-color: black;
+    color: white;
+    
+    font-family: 'Ranga';
+    font-size: 1.6em;
+    /*overflow-y: scroll;*/
+    max-height: 500px;
+}
+
+#dynamic-content {
+    overflow-y: scroll;
+    min-height: 400px;
+    max-height: 400px;
+}
+
+#burger-preview{
+    background-color: black;
+    color: greenyellow;
+    
+}
+
+.active-pane{
+    color: lawngreen;
+}
+
+#menu-head{
+
+    background-color: black;
+
+}
+
+
+
+
+/* Scrollbar, not supported in Firefox/IE */
+
+/* width */
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+    background: black;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background: yellow;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+    background: yellowgreen;
+}

@@ -1,0 +1,246 @@
+#Odense-Edge
+
+
+config mode
+
+ip dhcp excluded-address 192.168.0.1 192.168.0.20
+ip dhcp excluded-address 192.168.1.1 192.168.1.20
+ip dhcp excluded-address 192.168.2.1 192.168.2.20
+ip dhcp excluded-address 192.168.3.1 192.168.3.20
+ip dhcp excluded-address 192.168.4.1 192.168.4.20
+ip dhcp excluded-address 192.168.5.1 192.168.5.20
+ip dhcp excluded-address 192.168.6.1 192.168.6.20
+ip dhcp excluded-address 192.168.7.1 192.168.7.20
+ip dhcp excluded-address 192.168.8.1 192.168.8.20
+ip dhcp excluded-address 192.168.9.1 192.168.9.20
+ip dhcp excluded-address 192.168.10.1 192.168.10.20
+
+ip dhcp pool VLAN5POOL
+network 192.168.0.0 255.255.255.0
+default-router 192.168.0.1
+dns-server 192.168.9.5 192.168.73.5
+domain-name texasburger.local
+
+ip dhcp pool VLAN10POOL
+network 192.168.1.0 255.255.255.0
+default-router 192.168.1.1
+dns-server 192.168.9.5 192.168.73.5
+domain-name texasburger.local
+
+ip dhcp pool VLAN15POOL
+network 192.168.2.0 255.255.255.0
+default-router 192.168.2.1
+dns-server 192.168.9.5 192.168.73.5
+domain-name texasburger.local
+
+ip dhcp pool VLAN20POOL
+network 192.168.3.0 255.255.255.0
+default-router 192.168.3.1
+dns-server 192.168.9.5 192.168.73.5
+domain-name texasburger.local
+
+ip dhcp pool VLAN25POOL
+network 192.168.4.0 255.255.255.0
+default-router 192.168.4.1
+dns-server 192.168.9.5 192.168.73.5
+domain-name texasburger.local
+
+ip dhcp pool VLAN30POOL
+network 192.168.5.0 255.255.255.0
+default-router 192.168.5.1
+dns-server 192.168.9.5 192.168.73.5
+domain-name texasburger.local
+
+ip dhcp pool VLAN35POOL
+network 192.168.6.0 255.255.255.0
+default-router 192.168.6.1
+dns-server 192.168.9.5 192.168.73.5
+domain-name texasburger.local
+
+ip dhcp pool VLAN40POOL
+network 192.168.7.0 255.255.255.0
+default-router 192.168.7.1
+dns-server 192.168.9.5 192.168.73.5
+domain-name texasburger.local
+
+ip dhcp pool VLAN45POOL
+network 192.168.8.0 255.255.255.0
+default-router 192.168.8.1
+dns-server 192.168.9.5 192.168.73.5
+domain-name texasburger.local
+
+ip dhcp pool VLAN50POOL
+network 192.168.9.0 255.255.255.0
+default-router 192.168.9.1
+dns-server 192.168.9.5 192.168.73.5
+domain-name texasburger.local
+
+ip dhcp pool VLAN99POOL
+network 192.168.10.0 255.255.255.0
+default-router 192.168.10.1
+dns-server 192.168.9.5 192.168.73.5
+domain-name texasburger.local
+
+#Vordingborg-Edge
+
+config mode
+
+ip dhcp excluded-address 192.168.32.1 192.168.32.20
+ip dhcp excluded-address 192.168.33.1 192.168.33.20
+ip dhcp excluded-address 192.168.34.1 192.168.34.20
+ip dhcp excluded-address 192.168.35.1 192.168.35.20
+ip dhcp excluded-address 192.168.36.1 192.168.36.20
+ip dhcp excluded-address 192.168.37.1 192.168.37.20
+ip dhcp excluded-address 192.168.38.1 192.168.38.20
+ip dhcp excluded-address 192.168.39.1 192.168.39.20
+ip dhcp excluded-address 192.168.40.1 192.168.40.20
+ip dhcp excluded-address 192.168.41.1 192.168.41.20
+ip dhcp excluded-address 192.168.42.1 192.168.42.20
+
+ip dhcp pool VLAN5POOL
+network 192.168.32.0 255.255.255.0
+default-router 192.168.32.1
+dns-server 192.168.9.5 192.168.73.5
+domain-name texasburger.local
+
+ip dhcp pool VLAN10POOL
+network 192.168.33.0 255.255.255.0
+default-router 192.168.33.1
+dns-server 192.168.9.5 192.168.73.5
+domain-name texasburger.local
+
+ip dhcp pool VLAN15POOL
+network 192.168.34.0 255.255.255.0
+default-router 192.168.34.1
+dns-server 192.168.9.5 192.168.73.5
+domain-name texasburger.local
+
+ip dhcp pool VLAN20POOL
+network 192.168.35.0 255.255.255.0
+default-router 192.168.35.1
+dns-server 192.168.9.5 192.168.73.5
+domain-name texasburger.local
+
+ip dhcp pool VLAN25POOL
+network 192.168.36.0 255.255.255.0
+default-router 192.168.36.1
+dns-server 192.168.9.5 192.168.73.5
+domain-name texasburger.local
+
+ip dhcp pool VLAN30POOL
+network 192.168.37.0 255.255.255.0
+default-router 192.168.37.1
+dns-server 192.168.9.5 192.168.73.5
+domain-name texasburger.local
+
+ip dhcp pool VLAN35POOL
+network 192.168.38.0 255.255.255.0
+default-router 192.168.38.1
+dns-server 192.168.9.5 192.168.73.5
+domain-name texasburger.local
+
+ip dhcp pool VLAN40POOL
+network 192.168.39.0 255.255.255.0
+default-router 192.168.39.1
+dns-server 192.168.9.5 192.168.73.5
+domain-name texasburger.local
+
+ip dhcp pool VLAN45POOL
+network 192.168.40.0 255.255.255.0
+default-router 192.168.40.1
+dns-server 192.168.9.5 192.168.73.5
+domain-name texasburger.local
+
+ip dhcp pool VLAN50POOL
+network 192.168.41.0 255.255.255.0
+default-router 192.168.41.1
+dns-server 192.168.9.5 192.168.73.5
+domain-name texasburger.local
+
+ip dhcp pool VLAN99POOL
+network 192.168.42.0 255.255.255.0
+default-router 192.168.42.1
+dns-server 192.168.9.5 192.168.73.5
+domain-name texasburger.local
+
+#Kalundborg-Edge
+
+config mode
+
+ip dhcp excluded-address 192.168.64.1 192.168.64.20
+ip dhcp excluded-address 192.168.65.1 192.168.65.20
+ip dhcp excluded-address 192.168.66.1 192.168.66.20
+ip dhcp excluded-address 192.168.67.1 192.168.67.20
+ip dhcp excluded-address 192.168.68.1 192.168.68.20
+ip dhcp excluded-address 192.168.69.1 192.168.69.20
+ip dhcp excluded-address 192.168.70.1 192.168.70.20
+ip dhcp excluded-address 192.168.71.1 192.168.71.20
+ip dhcp excluded-address 192.168.72.1 192.168.72.20
+ip dhcp excluded-address 192.168.73.1 192.168.73.20
+ip dhcp excluded-address 192.168.74.1 192.168.74.20
+
+ip dhcp pool VLAN5POOL
+network 192.168.64.0 255.255.255.0
+default-router 192.168.64.1
+dns-server 192.168.73.5 192.168.9.5
+domain-name texasburger.local
+
+ip dhcp pool VLAN10POOL
+network 192.168.65.0 255.255.255.0
+default-router 192.168.65.1
+dns-server 192.168.73.5 192.168.9.5
+domain-name texasburger.local
+
+ip dhcp pool VLAN15POOL
+network 192.168.66.0 255.255.255.0
+default-router 192.168.66.1
+dns-server 192.168.73.5 192.168.9.5
+domain-name texasburger.local
+
+ip dhcp pool VLAN20POOL
+network 192.168.67.0 255.255.255.0
+default-router 192.168.67.1
+dns-server 192.168.73.5 192.168.9.5
+domain-name texasburger.local
+
+ip dhcp pool VLAN25POOL
+network 192.168.68.0 255.255.255.0
+default-router 192.168.68.1
+dns-server 192.168.73.5 192.168.9.5
+domain-name texasburger.local
+
+ip dhcp pool VLAN30POOL
+network 192.168.69.0 255.255.255.0
+default-router 192.168.69.1
+dns-server 192.168.73.5 192.168.9.5
+domain-name texasburger.local
+
+ip dhcp pool VLAN35POOL
+network 192.168.70.0 255.255.255.0
+default-router 192.168.70.1
+dns-server 192.168.73.5 192.168.9.5
+domain-name texasburger.local
+
+ip dhcp pool VLAN40POOL
+network 192.168.71.0 255.255.255.0
+default-router 192.168.71.1
+dns-server 192.168.73.5 192.168.9.5
+domain-name texasburger.local
+
+ip dhcp pool VLAN45POOL
+network 192.168.72.0 255.255.255.0
+default-router 192.168.72.1
+dns-server 192.168.73.5 192.168.9.5
+domain-name texasburger.local
+
+ip dhcp pool VLAN50POOL
+network 192.168.73.0 255.255.255.0
+default-router 192.168.73.1
+dns-server 192.168.73.5 192.168.9.5
+domain-name texasburger.local
+
+ip dhcp pool VLAN99POOL
+network 192.168.74.0 255.255.255.0
+default-router 192.168.74.1
+dns-server 192.168.73.5 192.168.9.5
+domain-name texasburger.local

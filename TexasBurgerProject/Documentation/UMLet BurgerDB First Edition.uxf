@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<diagram program="umlet" version="14.3.0">
+  <zoom_level>10</zoom_level>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>100</x>
+      <y>60</y>
+      <w>470</w>
+      <h>180</h>
+    </coordinates>
+    <panel_attributes>_Restaurant_
+--
+id: INTEGER, PRIMARY KEY (AUTOINCREMENT)
+city: VARCHAR(32) NOT NULL
+address: VARCHAR(32) NOT NULL
+phone: VARCHAR(16) NOT NULL
+
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>640</x>
+      <y>180</y>
+      <w>340</w>
+      <h>100</h>
+    </coordinates>
+    <panel_attributes>_BurgerIngredientType_
+--
+id: INTEGER, PRIMARY KEY (AUTOINCREMENT)         
+name: VARCHAR(32) NOT NULL</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>100</x>
+      <y>260</y>
+      <w>470</w>
+      <h>180</h>
+    </coordinates>
+    <panel_attributes>_BurgerIngredient_
+--
+id: INTEGER, PRIMARY KEY (AUTOINCREMENT)
+name: VARCHAR(64) NOT NULL
+description: VARCHAR(255) 
+type: INTEGER, FOREIGN KEY
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>640</x>
+      <y>60</y>
+      <w>350</w>
+      <h>100</h>
+    </coordinates>
+    <panel_attributes>_Inventory_
+--
+restaurant_id: INTEGER, FOREIGN KEY       
+burger_ingredient_id: INTEGER, FOREIGN KEY
+quantity: INTEGER NOT NULL</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>100</x>
+      <y>470</y>
+      <w>470</w>
+      <h>180</h>
+    </coordinates>
+    <panel_attributes>_Burger_
+--
+id: INTEGER, PRIMARY KEY (AUTOINCREMENT)
+name: VARCHAR(64) NOT NULL
+description: VARCHAR(255) 
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>100</x>
+      <y>670</y>
+      <w>470</w>
+      <h>180</h>
+    </coordinates>
+    <panel_attributes>_BurgerContent_
+--
+burger_id: INTEGER, FOREIGN KEY
+burgerIngredient_id: INTEGER, FOREIGN KEY
+quantity: INTEGER, NOT NULL
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>640</x>
+      <y>310</y>
+      <w>410</w>
+      <h>110</h>
+    </coordinates>
+    <panel_attributes>_Customer_
+--
+id: INTEGER, PRIMARY KEY (AUTOINCREMENT)
+name: VARCHAR(255) NOT NULL
+username: VARCHAR(64) NOT NULL
+password: VARCHAR(128) NOT NULL</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>640</x>
+      <y>460</y>
+      <w>420</w>
+      <h>180</h>
+    </coordinates>
+    <panel_attributes>_Order_
+--
+id: INTEGER, PRIMARY KEY (AUTOINCREMENT)
+restaurant_id: FOREIGN KEY
+customer_id: FOREIGN KEY
+time_started: DATETIME, NOT NULL
+time_finished: DATETIME</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>640</x>
+      <y>680</y>
+      <w>420</w>
+      <h>100</h>
+    </coordinates>
+    <panel_attributes>_OrderContent_
+--
+order_id: INTEGER, FOREIGN KEY
+burger_id: INTEGER, FOREIGN KEY
+quantity: INTEGER, NOT NULL</panel_attributes>
+    <additional_attributes/>
+  </element>
+</diagram>

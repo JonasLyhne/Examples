@@ -1,0 +1,17 @@
+   query GetUserTrips($userId: Int!) {
+        userById(id: $userId){
+           id
+           cars{
+             id
+             model
+           }
+           trips{
+             id
+             transportMethodId
+             totalCo2
+             distance
+             startTime
+             endTime
+           }
+         }
+    }

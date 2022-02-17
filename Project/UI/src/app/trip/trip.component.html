@@ -1,0 +1,16 @@
+<div class="trip row">
+    <div class="col-2 icon">
+        <mat-icon>directions_car</mat-icon>
+    </div>
+    <div class="col-7 info">
+        <div class="distance">
+            {{trip.distance}} km
+        </div>
+        <div class="time">
+            Kl: {{trip.startTime |  date:'hh:mm' }} - {{trip.endTime | date:'hh:mm' }}
+        </div>
+    </div>
+    <div class="col-3 carbon">
+        {{trip.totalCo2}} g
+    </div>
+</div>
